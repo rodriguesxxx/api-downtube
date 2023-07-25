@@ -26,8 +26,9 @@ In addition to being able to download videos and audios for free. No need to acc
 
 ## Architecture
 
+![arch](https://github.com/daniel-rodrigues1089/api-downtube/assets/117450018/1d127ab8-57b0-4d60-91ef-708ab875eab8)
 
-![arch](https://github.com/daniel-rodrigues1089/api-downtube/assets/117450018/d1c4a682-22ae-456e-a4e5-533490213d68)
+
 
 The flask will receive the endpoint and call the controller of that endpoint which in turn will call a model. Depending on the user's request, the model can consume the youtube API or download a certain video using yt-dlp
 
@@ -46,7 +47,8 @@ Download any video on youtube, passing its id as a parameter.
 
 #### download flow example:
 
-![exemple-download](https://github.com/daniel-rodrigues1089/api-downtube/assets/117450018/0fec0ce0-0d68-49f2-96b5-81b005ad1682)
+![exemple-download](https://github.com/daniel-rodrigues1089/api-downtube/assets/117450018/02f69bd0-fb59-482e-9c5d-682c5344f5b6)
+
 
 #### code exemple:
 ```python
