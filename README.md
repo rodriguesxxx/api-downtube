@@ -43,7 +43,7 @@ The flask will receive the endpoint and call the controller of that endpoint whi
 
 ### - Download videos
 
-Download any video on youtube, passing its id as a parameter.
+Download any video on youtube, passing its url as a parameter.
 
 #### download flow example:
 
@@ -55,6 +55,26 @@ Download any video on youtube, passing its id as a parameter.
 import requests
 
 endpoint = "https://downtube-api/download/video"
+body = {'url':"https://www.youtube.com/watch?v=TV7HOGNXybU"}
+
+request = requests.post(url = endpoint, json = body) #return: <Response [code]>
+
+if request.status_code == 200:
+    videoDownloadUrl = request.text
+else:
+    print("bad requets, code error -> ", request.status_code)
+```
+
+### - Download musics
+
+Download any music on youtube, passing its url as a parameter.
+
+#### code exemple:
+
+```python
+import requests
+
+endpoint = "https://downtube-api/download/music"
 body = {'url':"https://www.youtube.com/watch?v=TV7HOGNXybU"}
 
 request = requests.post(url = endpoint, json = body) #return: <Response [code]>
