@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, render_template, send_file
+from flask import Flask, request, redirect, render_template, send_file, jsonify
 from app.controllers.YoutubeApiController import YoutubeApiController as ytController
 from app.controllers.DownloadController import DownloadController as dlController
 import threading
@@ -46,7 +46,7 @@ def process_download(videoId, videoName):
     except BaseException:
         pass
 
-@app.route('/download/video/', methods=["POST", ])
+@app.route('/download/video', methods=["POST", ])
 def download():
     raw_data = request.data.decode('utf-8')
     json_data = json.loads(raw_data)
@@ -54,7 +54,10 @@ def download():
     videoName = name(videoId)
     download_thread = threading.Thread(target=process_download, args=(videoId, videoName))
     download_thread.start()
-    return f"http://localhost:5000/download/save/{videoName}"
+    download_date = {
+        "url" : f"http://localhost:5000/download/save/{videoName}"
+    }
+    return jsonify(download_date)
 
 
 # @app.route('/download/music/<videoId>')
