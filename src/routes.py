@@ -46,13 +46,16 @@ def process_download(videoId, videoName):
     except BaseException:
         pass
 
-@app.route('/download/video/<videoId>')
-def download(videoId):
-    videoId = escape(videoId)
+@app.route('/download/video/', methods=["POST", ])
+def download():
+    raw_data = request.data.decode('utf-8')
+    json_data = json.loads(raw_data)
+    videoId = ytController(videoUrl=json_data['url']).videoExtractId()
     videoName = name(videoId)
     download_thread = threading.Thread(target=process_download, args=(videoId, videoName))
     download_thread.start()
-    return redirect(f'/download/save/{videoName}')
+    return f"http://localhost:5000/download/save/{videoName}"
+
 
 # @app.route('/download/music/<videoId>')
 
