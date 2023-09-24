@@ -55,7 +55,7 @@ def download():
     download_thread = threading.Thread(target=process_download, args=(videoId, ""))
     download_thread.start()
     download_date = {
-        "url" : f"http://localhost:5000/download/save/{videoId}"
+        "url" : f"https://api-downtube-v2.onrender.com/download/save/{videoId}"
     }
     return jsonify(download_date)
 
