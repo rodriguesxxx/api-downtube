@@ -1,21 +1,19 @@
 from ..models.service.DownloadService import DownloadService as dlService
 VIDEO_ID = ""
-VIDEO_NAME = ""
 
 class DownloadController:
 
-    def __init__(self, videoId="", videoName=""):
-        global VIDEO_ID, VIDEO_NAME
+    def __init__(self, videoId=""):
+        global VIDEO_ID
         VIDEO_ID = videoId
-        VIDEO_NAME = videoName
 
     @staticmethod
     def downloadVideo():
-        dlService(VIDEO_ID, VIDEO_NAME).download()
+        dlService(VIDEO_ID).download()
 
     @staticmethod 
     def saveVideo():
-        return dlService(videoName=VIDEO_NAME).saveVideo()
+        return dlService(videoId=VIDEO_ID).saveVideo()
 
     @staticmethod
     def deleteVideo():

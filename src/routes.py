@@ -39,10 +39,10 @@ def extractId():
     return ytController(videoUrl=json_data['url']).videoExtractId()
 
 
-def process_download(videoId, videoName):
+def process_download(videoId, bugFix):
     
     try:
-        dlController(videoId=videoId, videoName=videoName).downloadVideo()
+        dlController(videoId=videoId).downloadVideo()
     except BaseException:
         pass
 
@@ -51,11 +51,11 @@ def download():
     raw_data = request.data.decode('utf-8')
     json_data = json.loads(raw_data)
     videoId = ytController(videoUrl=json_data['url']).videoExtractId()
-    videoName = name(videoId)
-    download_thread = threading.Thread(target=process_download, args=(videoId, videoName))
+    # videoName = name(videoId)
+    download_thread = threading.Thread(target=process_download, args=(videoId, ""))
     download_thread.start()
     download_date = {
-        "url" : f"http://localhost:5000/download/save/{videoName}"
+        "url" : f"http://localhost:5000/download/save/{videoId}"
     }
     return jsonify(download_date)
 
